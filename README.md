@@ -16,7 +16,8 @@ This impressive macOS application features a stunning info panel
 Grab the application, run it once, and in the future your Vue components
 show up in pretty colors:
 
-<img src="assets/screenshot.png" align="center" />
+<img src="assets/screenshot.png" align="center" 
+     style="display: block; text-align:center "/>
 
 Credits go to
 [Matt Stevens](https://stackoverflow.com/users/22368/matt-stevens)
