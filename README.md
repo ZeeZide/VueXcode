@@ -26,7 +26,7 @@ for explaining how to do it on
 
 ### Who
 
-**mod_swift** is brought to you by
+**VueXcode** is brought to you by
 [The Always Right Institute](http://www.alwaysrightinstitute.com)
 and
 [ZeeZide](http://zeezide.de).
