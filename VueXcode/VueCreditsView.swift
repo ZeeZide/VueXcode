@@ -279,7 +279,11 @@ class ClickableLabel: ZzLabel {
     isSelectable    = false // not for raw labels
     
     /* common */
-    alignment   = NSLeftTextAlignment
+    #if swift(>=3.2)
+      alignment = .left
+    #else
+      alignment = NSLeftTextAlignment
+    #endif
     stringValue = title // TODO: formatters
     
     // for NSTextField. There is also fittingSize, intrinsicContentSize,

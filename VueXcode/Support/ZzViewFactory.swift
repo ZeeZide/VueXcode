@@ -25,7 +25,11 @@ public class ZzViewFactoryAppKit {
     v.isSelectable    = false // not for raw labels
     
     /* common */
-    v.alignment   = NSLeftTextAlignment
+    #if swift(>=3.2)
+      v.alignment = .left
+    #else
+      v.alignment = NSLeftTextAlignment
+    #endif
     v.objectValue = value // TODO: formatters
     
     // for NSTextField. There is also fittingSize, intrinsicContentSize,
