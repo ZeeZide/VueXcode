@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>1.0.3</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>4</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.developer-tools</string>
 	<key>LSMinimumSystemVersion</key>
@@ -52,6 +52,29 @@
 				<key>public.mime-type</key>
 				<array>
 					<string>application/x-vue-template</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.html</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Mustache Template</string>
+			<key>UTTypeIconFile</key>
+			<string>MustacheLogo</string>
+			<key>UTTypeIdentifier</key>
+			<string>de.zeezide.mustache.template</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mustache</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/x-mustache-template</string>
 				</array>
 			</dict>
 		</dict>
