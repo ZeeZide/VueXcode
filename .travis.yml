@@ -1,0 +1,18 @@
+language:  generic
+
+notifications:
+  slack:
+    rooms:
+      - zeeql:odi4PEJUdmDPkBfjhHIaSdrS
+
+matrix:
+    include:
+        - os:   osx
+          osx_image: xcode11
+
+script:
+    - export PATH="$HOME/usr/bin:$PATH"
+    - set -o pipefail
+    - xcodebuild -configuration Debug   | xcpretty
+    - xcodebuild -configuration Release | xcpretty
+
