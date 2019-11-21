@@ -3,7 +3,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 import Cocoa
@@ -25,11 +25,11 @@ public typealias ZzPoint          = NSPoint
 public typealias ZzSize           = NSSize
 public typealias ZzImage          = NSImage
 
-public typealias ZzLayoutPriority = NSLayoutPriority
+public typealias ZzLayoutPriority = NSLayoutConstraint.Priority
 
-public typealias ZzStackViewDistribution = NSStackViewDistribution
+public typealias ZzStackViewDistribution = NSStackView.Distribution
 public typealias ZzStackViewAxis         = NSUserInterfaceLayoutOrientation
-public typealias ZzStackViewAlignment    = NSLayoutAttribute
+public typealias ZzStackViewAlignment    = NSLayoutConstraint.Attribute
 
 public let ZZInitialSize = NSMakeRect(0, 0, 128, 128)
 

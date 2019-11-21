@@ -32,7 +32,7 @@ class VueCreditsView : ZzView {
   
   // MARK: - Actions
   
-  func onClick(_ sender: Any) {
+  @objc func onClick(_ sender: Any) {
     if let label = sender as? ZzLabel {
       onClick(label: label)
     }
@@ -45,7 +45,7 @@ class VueCreditsView : ZzView {
     guard let urls = label.clickableLink else { return }
     guard let url  = URL(string: urls)   else { return }
 
-    NSWorkspace.shared().open(url)
+    NSWorkspace.shared.open(url)
   }
  
   
@@ -198,7 +198,7 @@ class VueCreditsView : ZzView {
   func makeH1(_ title: String) -> ZzLabel {
     let label = zz.makeLabel(title)
     label.textAlignment = .center
-    label.setContentHuggingPriority(750, for: .horizontal)
+    label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     label.font = ZzFont.font(family: font, size: FontSizes.h1, weight: 2)
     return label
   }
@@ -206,7 +206,7 @@ class VueCreditsView : ZzView {
   func makeH2(_ title: String) -> ZzLabel {
     let label = zz.makeLabel(title)
     label.textAlignment = .center
-    label.setContentHuggingPriority(750, for: .horizontal)
+    label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     #if !os(macOS)
       label.font = ZzFont.font(family: font, size: FontSizes.h2, weight: 4)
     #endif
@@ -218,7 +218,7 @@ class VueCreditsView : ZzView {
     #if !os(macOS) // hm, otherwise this is lost when made clickable?!
       label.textAlignment = .center
     #endif
-    label.setContentHuggingPriority(750, for: .horizontal)
+    label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     
     label.textColor = ZzColor.darkGray
     label.lineBreakMode = .byWordWrapping
@@ -279,7 +279,7 @@ class ClickableLabel: ZzLabel {
     isSelectable    = false // not for raw labels
     
     /* common */
-    alignment   = NSLeftTextAlignment
+    alignment   = .left
     stringValue = title // TODO: formatters
     
     // for NSTextField. There is also fittingSize, intrinsicContentSize,
@@ -299,37 +299,37 @@ public typealias ZzFont = NSFont
 
 public extension ZzFont {
   
-  static var zzLabelFontSize : CGFloat { return labelFontSize() }
+  static var zzLabelFontSize : CGFloat { return labelFontSize }
   
-  static func font(family: String, size: CGFloat = ZzFont.systemFontSize(),
+  static func font(family: String, size: CGFloat = ZzFont.systemFontSize,
                    weight: Int = 0)
               -> ZzFont?
   {
-    let fm = NSFontManager.shared()
+    let fm = NSFontManager.shared
     return fm.font(withFamily: family, traits: [], weight: weight, size: size)
   }
   
-  static func mono(family: String, size: CGFloat = ZzFont.systemFontSize())
+  static func mono(family: String, size: CGFloat = ZzFont.systemFontSize)
               -> ZzFont?
   {
-    let fm = NSFontManager.shared()
+    let fm = NSFontManager.shared
     return fm.font(withFamily: family, traits: .fixedPitchFontMask,
                    weight: 0, size: size)
   }
   
   var zzBold : ZzFont {
-    let fm = NSFontManager.shared()
+    let fm = NSFontManager.shared
     return fm.convert(self, toHaveTrait: .boldFontMask)
   }
   var zzBolder : ZzFont {
     // https://developer.apple.com/reference/appkit/nsfontmanager/1462321-convertweight
-    let fm   = NSFontManager.shared()
+    let fm   = NSFontManager.shared
     return fm.convertWeight(true, of: self)
   }
   
   func zzModifySize(by offset: CGFloat) -> ZzFont {
     let size = pointSize + offset
-    let fm   = NSFontManager.shared()
+    let fm   = NSFontManager.shared
     return fm.convert(self, toSize: size)
   }
 }

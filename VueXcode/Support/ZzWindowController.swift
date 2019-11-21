@@ -3,7 +3,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 
@@ -55,8 +55,8 @@ open class ZzWindowController: NSWindowController,
     return NSMakeRect(0, 200, s.width, s.height)
   }
   
-  open var defaultWindowStyleMask : NSWindowStyleMask {
-    var mask : NSWindowStyleMask =
+  open var defaultWindowStyleMask : NSWindow.StyleMask {
+    var mask : NSWindow.StyleMask =
                  [ .titled, .closable, .miniaturizable, .resizable ]
     
     if hasUnifiedTitleAndToolbar {

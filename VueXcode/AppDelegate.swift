@@ -3,7 +3,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 import Cocoa
@@ -26,8 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   // I think this is not called because we are NOT an NSResponder subclass?
   // TODO: or is just a 'canPerformAction' missing?
   func patchAboutMenu() {
-    guard let menu    = NSApplication.shared().mainMenu else { return }
-    guard let appMenu = menu.item(at: 0)?.submenu       else { return }
+    guard let menu    = NSApplication.shared.mainMenu else { return }
+    guard let appMenu = menu.item(at: 0)?.submenu     else { return }
     
     let appItems = appMenu.items
     
@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
-  func orderFrontStandardAboutPanel(_ sender: Any?) {
+  @objc func orderFrontStandardAboutPanel(_ sender: Any?) {
     if aboutWC == nil { aboutWC = InfoPanelWC() }
     aboutWC?.showWindow(self)
     aboutWC?.window?.orderFront(self)

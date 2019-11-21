@@ -3,7 +3,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 import Cocoa
@@ -25,7 +25,7 @@ public class ZzViewFactoryAppKit {
     v.isSelectable    = false // not for raw labels
     
     /* common */
-    v.alignment = NSLeftTextAlignment
+    v.alignment   = .left
     v.objectValue = value // TODO: formatters
     
     // for NSTextField. There is also fittingSize, intrinsicContentSize,

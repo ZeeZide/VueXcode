@@ -3,7 +3,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 import Cocoa
@@ -17,11 +17,10 @@ extension ZzLabel {
                 as? NSMutableAttributedString
              ?? NSMutableAttributedString(string: stringValue)
     
-    let linkAttrs : [ String : Any ] = [
-      NSForegroundColorAttributeName: color,
-      NSUnderlineStyleAttributeName:
-                        NSNumber(value: NSUnderlineStyle.styleSingle.rawValue),
-      NSLinkAttributeName: URL(string: url)!
+    let linkAttrs : [ NSAttributedString.Key : Any ] = [
+      .foregroundColor: color,
+      .underlineStyle: NSNumber(value: NSUnderlineStyle.single.rawValue),
+      .link: URL(string: url)!
     ]
     attrS.setAttributes(linkAttrs, range: range)
     
@@ -39,7 +38,7 @@ extension ZzLabel {
     let ass = attributedStringValue
     
     var url : String? = nil
-    ass.enumerateAttribute(NSLinkAttributeName,
+    ass.enumerateAttribute(.link,
                            in: NSRange(location: 0, length: ass.length),
                            options: [])
     { (value, range, doStop) in
