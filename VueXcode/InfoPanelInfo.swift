@@ -4,7 +4,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 import Cocoa
@@ -37,7 +37,7 @@ struct InfoPanelInfo {
     self.init(bundle: Bundle.main)
   }
   
-  var icon : ZzImage? { return ZzImage(named: NSImageNameApplicationIcon) }
+  var icon : ZzImage? { return ZzImage(named: NSImage.applicationIconName) }
 }
 
 extension Bundle {

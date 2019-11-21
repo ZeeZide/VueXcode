@@ -3,7 +3,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 import class     Cocoa.NSLayoutConstraint
@@ -25,15 +25,17 @@ public extension ZzView {
   {
     addSubview(subview)
     
-    let lhugh : ZzLayoutPriority? =
-                (hugh == nil && hug == nil) ? nil : ((hugh ?? 0) + (hug ?? 0))
-    let lhugv : ZzLayoutPriority? =
-                (hugv == nil && hug == nil) ? nil : ((hugv ?? 0) + (hug ?? 0))
+    // what crap :-)
+    let def = ZzLayoutPriority(rawValue: 0.0)
+    let lhugh : ZzLayoutPriority? = (hugh == nil && hug == nil)
+      ? nil : ZzLayoutPriority((hugh ?? def).rawValue + (hug ?? def).rawValue)
+    let lhugv : ZzLayoutPriority? = (hugv == nil && hug == nil)
+      ? nil : ZzLayoutPriority((hugv ?? def).rawValue + (hug ?? def).rawValue)
 
-    let lcrh  : ZzLayoutPriority? =
-                (crh == nil && cr == nil) ? nil : ((crh ?? 0) + (cr ?? 0))
-    let lcrv  : ZzLayoutPriority? =
-                (crv == nil && cr == nil) ? nil : ((crv ?? 0) + (cr ?? 0))
+    let lcrh  : ZzLayoutPriority? = (crh == nil && cr == nil)
+      ? nil : ZzLayoutPriority((crh ?? def).rawValue + (cr ?? def).rawValue)
+    let lcrv  : ZzLayoutPriority? = (crv == nil && cr == nil)
+      ? nil : ZzLayoutPriority((crv ?? def).rawValue + (cr ?? def).rawValue)
     
     if let h = lhugh { subview.setContentHuggingPriority(h, for: .horizontal) }
     if let h = lhugv { subview.setContentHuggingPriority(h, for: .vertical)   }

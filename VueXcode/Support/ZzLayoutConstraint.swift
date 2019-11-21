@@ -3,18 +3,19 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 import class Foundation.NSNumber
 
+import class     Cocoa.NSView
 import class     Cocoa.NSLayoutConstraint
 import typealias Cocoa.CGFloat
 import var       Cocoa.NSViewNoIntrinsicMetric
 import enum      Cocoa.NSLayoutAttribute
 import enum      Cocoa.NSLayoutRelation
 
-public let ZzViewNoIntrinsicMetric = NSViewNoIntrinsicMetric
+public let ZzViewNoIntrinsicMetric = NSView.noIntrinsicMetric
 
 public typealias ZZArrayOfConstraints = [ NSLayoutConstraint ]
 public typealias ZZArrayOfStrings     = [ String ]
@@ -24,25 +25,28 @@ public typealias ZzMetrics            = [ String : NSNumber ]
 public extension Array where Element : NSLayoutConstraint {
   
   @discardableResult
-  public func activate() -> Array {
+  func activate() -> Array {
     NSLayoutConstraint.activate(self)
     return self
   }
   @discardableResult
-  public func deactivate() -> Array {
+  func deactivate() -> Array {
     NSLayoutConstraint.deactivate(self)
     return self
   }
   
-  public var priority : ZzLayoutPriority {
+  var priority : ZzLayoutPriority {
     set {
       for constraint in self {
         constraint.priority = newValue
       }
     }
     get {
-      let count = ZzLayoutPriority(self.count)
-      return map { $0.priority }.reduce(0.0) { $0 + $1 / count }
+      return ZzLayoutPriority(
+        map({ $0.priority.rawValue }).reduce(0.0) { last, prio in
+          return last + (prio / Float(self.count))
+        }
+      )
     }
   }
   
@@ -73,8 +77,8 @@ public func ZzAdd(constraints: [ Any] , to array: inout [ NSLayoutConstraint ],
 
 public extension NSLayoutConstraint {
   
-  convenience init(item view1: Any, attribute attr1: NSLayoutAttribute,
-                   relatedBy relation: NSLayoutRelation = .equal,
+  convenience init(item view1: Any, attribute attr1: Attribute,
+                   relatedBy relation: Relation = .equal,
                    multiplier: CGFloat = 1.0, constant c: CGFloat)
   {
     self.init(item: view1, attribute: attr1, relatedBy: relation,
@@ -84,7 +88,7 @@ public extension NSLayoutConstraint {
 
   // make height the same as width
   static func zzAspectRatio(_ a: ZzView, multiplier: CGFloat = 1,
-                            priority: ZzLayoutPriority = 750)
+                            priority: ZzLayoutPriority = .init(750))
               -> NSLayoutConstraint
   {
     let c = NSLayoutConstraint(item:   a, attribute: .height, relatedBy: .equal,

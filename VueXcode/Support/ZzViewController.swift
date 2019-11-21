@@ -3,7 +3,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 import class Foundation.NSString
@@ -16,7 +16,7 @@ public typealias ZzViewController = NSViewController
 
 public extension ZzViewController {
    
-  public var zz : ZzViewFactory {
+  var zz : ZzViewFactory {
     return ZzViewFactoryAppKit.defaultViewFactory
   }
 }

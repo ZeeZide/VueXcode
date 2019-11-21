@@ -3,7 +3,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
 //
 
 import Cocoa
@@ -27,7 +27,7 @@ class InfoPanelWC: ZzWindowController {
     window.isMovableByWindowBackground = true
   }
 
-  override open var defaultWindowStyleMask : NSWindowStyleMask {
+  override open var defaultWindowStyleMask : NSWindow.StyleMask {
     var mask = super.defaultWindowStyleMask
     mask.insert(.fullSizeContentView)
     mask.remove([.unifiedTitleAndToolbar,  .miniaturizable , .resizable])
