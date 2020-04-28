@@ -3,7 +3,7 @@
 //  VueXcode
 //
 //  Created by Helge Hess on 07/06/17.
-//  Copyright © 2017-2019 ZeeZide GmbH. All rights reserved.
+//  Copyright © 2017-2020 ZeeZide GmbH. All rights reserved.
 //
 
 import func Foundation.NSLog
@@ -15,7 +15,7 @@ public struct ZzViewSearchOptions: OptionSet {
   
   public init(rawValue: Int) { self.rawValue = rawValue }
   
-  public static let none = ZzViewSearchOptions(rawValue: 0)
+  public static let none = ZzViewSearchOptions([])
   
   public static let deep = ZzViewSearchOptions(rawValue: 1 << 1)
     // looks for the upmost view
